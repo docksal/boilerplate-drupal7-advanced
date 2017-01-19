@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Fail on errors
+## Initialize a Docksal powered Drupal 7 site
+##
+## Usage: fin init
+
+# Abort if anything fails
 set -e
-
-## Initialize Docksal powered Drupal 7 Installation
 
 #-------------------------- Settings --------------------------------
 
 # PROJECT_ROOT is passed from fin.
-# The following variables are configured in the '.env' file: DOCROOT, SITE_DIRECTORY, SOURCE_ALIAS and others.
+# The following variables are configured in the '.env' file: DOCROOT, SITE_DIRECTORY and others.
 
 DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
 SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
@@ -67,18 +69,20 @@ _confirm ()
 	done
 }
 
-# Copy a settings file from $source to $dest
-# Skips if the $dest already exists.
-_copy_settings_file()
+# Copy a settings file.
+# Skips if the destination file already exists.
+# @param $1 source file
+# @param $2 destination file
+copy_settings_file()
 {
-	local source=${1}
-	local dest=${2}
+	local source="$1"
+	local dest="$2"
 	
 	if [[ ! -f $dest ]]; then
 		echo "Copying ${dest}..."
-		cp "$source" "$dest"
+		cp $source $dest
 	else
-		echo-yellow "${dest} already in place"
+		echo-yellow "${dest} already in place."
 	fi
 }
 
@@ -86,20 +90,17 @@ _copy_settings_file()
 
 #-------------------------- Functions --------------------------------
 
-# Copy settings files
+# Initialize local settings files
 init_settings ()
 {
-	cd $PROJECT_ROOT
-	
 	# Drupal
-	_copy_settings_file "${SITEDIR_PATH}/example.settings.local.php" "${SITEDIR_PATH}/settings.local.php"
+	copy_settings_file "${SITEDIR_PATH}/example.settings.local.php" "${SITEDIR_PATH}/settings.local.php"
 	
 	# Behat
-	_copy_settings_file 'tests/behat/behat.yml.dist' 'tests/behat/behat.yml'
+	copy_settings_file 'tests/behat/behat.yml.dist' 'tests/behat/behat.yml'
 }
 
-# Install the site
-# @param $1 site-name (domain)
+# Install site
 site_install ()
 {
 	cd $DOCROOT_PATH
@@ -108,6 +109,7 @@ site_install ()
 	fin exec "PHP_OPTIONS="'"-d sendmail_path=`which true`"'" drush site-install -y --site-name='My Drupal 7 Site'"
 }
 
+# Install another site
 site_install_anothersite ()
 {
 	cd $DOCROOT_PATH
@@ -198,11 +200,10 @@ run_behat ()
 
 #-------------------------- Execution --------------------------------
 
-if [[ -z $PROJECT_ROOT ]]; then
-	echo-red "Git repository was not found"
-	exit 1;
+if [[ "$PROJECT_ROOT" == "" ]]; then
+	echo-red "\$PROJECT_ROOT is not set"
+	exit 1
 fi
-cd $PROJECT_ROOT
 
 # Project initialization steps
 echo -e "${green_bg} Step 1 ${NC}${green} Initializing local project configuration...${NC}"
@@ -220,7 +221,7 @@ echo "Waiting 10s for MySQL to initialize...";
 sleep 10
 
 echo -e "${green_bg} Step 3 ${NC}${green} Installing site...${NC}"
-site_install
+time site_install
 
 if is_windows; then
 	echo-green "Add ${SITE_DOMAIN} to your hosts file (/etc/hosts), e.g.:"

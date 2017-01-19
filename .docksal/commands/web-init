@@ -35,10 +35,10 @@ _confirm ()
 
 echo -e "${green}Docksal powered Drupal 7 project setup${NC}"
 echo "------------------------------------------------"
-echo -e "Preparing to download Drupal 7 project to ${yellow}$(pwd)/docksal-drupal7${NC}"
+echo -e "Preparing to download Drupal 7 project to ${yellow}$(pwd)/drupal7-advanced${NC}"
 _confirm "Continue with this folder?"
 echo -e "${green_bg} INIT ${NC}${green} Cloning repository...${NC}"
 
-git clone -b master https://github.com/docksal/drupal7.git && \
-	cd docksal-drupal7 && \
+git clone -b master https://github.com/docksal/drupal7-advanced.git && \
+	cd drupal7-advanced && \
 	fin init
