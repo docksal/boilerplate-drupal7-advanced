@@ -224,13 +224,13 @@ echo -e "${green_bg} Step 3 ${NC}${green} Installing site...${NC}"
 time site_install
 
 if is_windows; then
-	echo-green "Add ${SITE_DOMAIN} to your hosts file (/etc/hosts), e.g.:"
-	echo-green "192.168.64.100 ${SITE_DOMAIN}"
+	echo-green "Add ${VIRTUAL_HOST} to your hosts file (/etc/hosts), e.g.:"
+	echo-green "192.168.64.100 ${VIRTUAL_HOST}"
 	echo
 fi
 
 echo -en "${green_bg} DONE! ${NC} "
-echo -e "Open ${yellow}http://${SITE_DOMAIN}${NC} in your browser to verify the setup."
+echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
 
 # Examples of other things that can be done.
 
