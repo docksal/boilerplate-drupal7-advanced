@@ -22,8 +22,8 @@ Follow [Docksal environment setup instructions](https://github.com/docksal/docks
 1. Clone this repo into your Projects directory
 
     ```
-    git clone https://github.com/docksal/drupal7.git
-    cd drupal7
+    git clone https://github.com/docksal/drupal7-advanced
+    cd drupal7-advanced
     ```
 
 2. Initialize the site
@@ -34,12 +34,12 @@ Follow [Docksal environment setup instructions](https://github.com/docksal/docks
     fin init
     ```
 
-3. **On Windows** add `192.168.64.100  drupal7.docksal` to your hosts file
+3. **On Windows** add `192.168.64.100 drupal7-advanced.docksal` to your hosts file
 
 4. Point your browser to
 
     ```
-    http://drupal7.docksal
+    http://drupal7-advanced.docksal
     ```
 
 
