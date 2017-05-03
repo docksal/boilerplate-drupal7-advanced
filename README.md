@@ -73,7 +73,7 @@ fin behat features/blackbox.feature
 
 There is an additional site configured in this project: `anothersite.drupal7.docksal`
 
-To have it installed during `fin int` 
+To have it installed during `fin init` 
 
 1. Uncomment the following block in [.docksal/commands/init](.docksal/commands/init):
 
