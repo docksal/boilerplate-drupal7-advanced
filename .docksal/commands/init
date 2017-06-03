@@ -122,12 +122,12 @@ site_install_anothersite ()
 	cd $DOCROOT_PATH
 	
 	# Initialize settings
-	_copy_settings_file "sites/example.com/example.settings.local.php" "sites/example.com/settings.local.php"
+	copy_settings_file "sites/example.com/example.settings.local.php" "sites/example.com/settings.local.php"
 	# Create DB
 	db_create 'anothersite'
 	# Install site
-	fin exec "PHP_OPTIONS="'"-d sendmail_path=`which true`"'" drush @drupal7.anothersite site-install -y --site-name='Another Drupal 7 Site'"
-	echo -e "Open ${yellow}http://anothersite.drupal7.docksal${NC} in your browser to view site1"
+	fin exec "PHP_OPTIONS="'"-d sendmail_path=`which true`"'" drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'"
+	echo -e "Open ${yellow}http://anothersite.drupal7-advanced.docksal${NC} in your browser to view site1"
 }
 
 # Create a new DB
@@ -231,12 +231,6 @@ sleep 10
 echo -e "${green_bg} Step 3 ${NC}${green} Installing site...${NC}"
 time site_install
 
-if is_windows; then
-	echo-green "Add ${VIRTUAL_HOST} to your hosts file (/etc/hosts), e.g.:"
-	echo-green "192.168.64.100 ${VIRTUAL_HOST}"
-	echo
-fi
-
 echo -en "${green_bg} DONE! ${NC} "
 echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
 
@@ -249,6 +243,6 @@ echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the
 #run_behat
 
 # Multisite - install an additional site
-#site_install_anothersite
+site_install_anothersite
 
 #-------------------------- END: Execution --------------------------------

@@ -2,7 +2,7 @@
 
 ## Web-based script to initialize Docksal powered Drupal 7 site
 ## Usage:
-##   fin exec-url https://raw.githubusercontent.com/docksal/drupal7/master/.docksal/commands/web-init
+##   fin exec-url https://raw.githubusercontent.com/docksal/drupal7-advanced/master/.docksal/commands/web-init
 
 # Abort if anything fails
 set -e

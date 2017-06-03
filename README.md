@@ -34,9 +34,7 @@ Follow [Docksal environment setup instructions](https://github.com/docksal/docks
     fin init
     ```
 
-3. **On Windows** add `192.168.64.100 drupal7-advanced.docksal` to your hosts file
-
-4. Point your browser to
+3. Point your browser to
 
     ```
     http://drupal7-advanced.docksal
@@ -71,7 +69,7 @@ fin behat features/blackbox.feature
 
 ## Drupal multisite example
 
-There is an additional site configured in this project: `anothersite.drupal7.docksal`
+There is an additional site configured in this project: `anothersite.drupal7-advanced.docksal`
 
 To have it installed during `fin init` 
 
@@ -83,8 +81,3 @@ To have it installed during `fin init`
     ```
 
 2. Run `fin init` again
-3. **On Windows** add another domain mapping to your hosts file 
-
-```
-192.168.64.100	anothersite.drupal7.docksal
-```
