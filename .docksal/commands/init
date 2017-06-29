@@ -10,7 +10,7 @@ set -e
 #-------------------------- Settings --------------------------------
 
 # PROJECT_ROOT is passed from fin.
-# The following variables are configured in the '.env' file: DOCROOT, SITE_DIRECTORY and others.
+# The following variables are configured in the '.env' file: DOCROOT, SITE_DIRECTORY, SOURCE_ALIAS and others.
 
 DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
 SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
