@@ -113,7 +113,7 @@ site_install ()
 	cd $DOCROOT_PATH
 	
 	# We disable email sending here so site-install does not return an error
-	fin exec "PHP_OPTIONS="'"-d sendmail_path=`which true`"'" drush site-install -y --site-name='My Drupal 7 Site'"
+	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush site-install -y --site-name='My Drupal 7 Site'"
 }
 
 # Install another site
@@ -126,7 +126,7 @@ site_install_anothersite ()
 	# Create DB
 	db_create 'anothersite'
 	# Install site
-	fin exec "PHP_OPTIONS="'"-d sendmail_path=`which true`"'" drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'"
+	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'"
 	echo -e "Open ${yellow}http://anothersite.drupal7-advanced.docksal${NC} in your browser to view site1"
 }
 
