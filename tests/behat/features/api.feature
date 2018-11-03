@@ -20,25 +20,11 @@ Feature: DrupalContext
     Then I should be on "admin/structure/types/manage/article/fields"
     And I should see text matching "Add new field"
 
-  @d8
-  Scenario: Target links within table rows
-    Given I am logged in as a user with the "administrator" role
-    When I am at "admin/structure/types"
-    And I click "manage fields" in the "Article" row
-    Then I should be on "admin/structure/types/manage/article/fields"
-    And I should see text matching "Add field"
-
   @drushTest @d7
   Scenario: Find a heading in a region
     Given I am not logged in
     When I am on the homepage
     Then I should see the heading "User login" in the "left sidebar" region
-
-  @d8
-  Scenario: Find a heading in a region
-    Given I am not logged in
-    When I am on the homepage
-    Then I should see the heading "Search" in the "left sidebar" region
 
   @drushTest @d7 @d8
   Scenario: Clear cache
@@ -112,15 +98,6 @@ Feature: DrupalContext
     When I visit "admin/people"
     Then I should see the text "administrator" in the "Joe User" row
 
-  @d8
-  Scenario: Create users with roles
-    Given users:
-      | name     | mail            | roles         |
-      | Joe User | joe@example.com | administrator |
-    And I am logged in as a user with the "administrator" role
-    When I visit "admin/people"
-    Then I should see the text "Administrator" in the "Joe User" row
-
   @d7 @d8
   Scenario: Login as a user created during this scenario
     Given users:
@@ -146,17 +123,6 @@ Feature: DrupalContext
     Then I should see "Tag one"
     And I should see "Tag two"
 
-  @d8
-  Scenario: Create many terms
-    Given "tags" terms:
-      | name    |
-      | Tag one |
-      | Tag two |
-    And I am logged in as a user with the "administrator" role
-    When I go to "admin/structure/taxonomy/manage/tags/overview"
-    Then I should see "Tag one"
-    And I should see "Tag two"
-
   @d7
   Scenario: Create terms using vocabulary title rather than machine name.
     Given "Tags" terms:
@@ -165,17 +131,6 @@ Feature: DrupalContext
       | Tag two |
     And I am logged in as a user with the "administrator" role
     When I go to "admin/structure/taxonomy/tags"
-    Then I should see "Tag one"
-    And I should see "Tag two"
-
-  @d8
-  Scenario: Create terms using vocabulary title rather than machine name.
-    Given "Tags" terms:
-      | name    |
-      | Tag one |
-      | Tag two |
-    And I am logged in as a user with the "administrator" role
-    When I go to "admin/structure/taxonomy/manage/tags/overview"
     Then I should see "Tag one"
     And I should see "Tag two"
 
@@ -250,17 +205,6 @@ Feature: DrupalContext
       | Tag two   |
     And I am logged in as a user with the "administrator" role
     When I go to "admin/structure/taxonomy/tags"
-    Then I should see "Tag one"
-    And I should see "Tag two"
-
-  @d8
-  Scenario: Term hooks are functioning
-    Given "tags" terms:
-      | Label     |
-      | Tag one   |
-      | Tag two   |
-    And I am logged in as a user with the "administrator" role
-    When I go to "admin/structure/taxonomy/manage/tags/overview"
     Then I should see "Tag one"
     And I should see "Tag two"
 
