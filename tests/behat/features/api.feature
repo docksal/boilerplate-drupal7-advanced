@@ -200,7 +200,7 @@ Feature: DrupalContext
   @d7
   Scenario: Term hooks are functioning
     Given "tags" terms:
-      | Label     |
+      | name     |
       | Tag one   |
       | Tag two   |
     And I am logged in as a user with the "administrator" role
