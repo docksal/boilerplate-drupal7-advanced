@@ -30,6 +30,7 @@ default:
         header: "#header"
         content: "#content"
         footer: "#footer"
+        left sidebar: ".region-sidebar-first"
       # Map selectors.
       selectors:
         message_selector: '#messages'
