@@ -18,7 +18,7 @@ default:
       # Use goutte (basic PHP browser, super fast) as the default driver.
       default_session: goutte
       # For real browser testing and tests requiring JS use selenium2 driver.
-      # Tag features/scenarious with @javascript to use the selenium2 driver.
+      # Tag features/scenarios with @javascript to use the selenium2 driver.
       javascript_session: selenium2
     Drupal\DrupalExtension:
       blackbox: ~
@@ -30,6 +30,7 @@ default:
         header: "#header"
         content: "#content"
         footer: "#footer"
+        left sidebar: ".region-sidebar-first"
       # Map selectors.
       selectors:
         message_selector: '#messages'

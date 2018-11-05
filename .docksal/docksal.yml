@@ -66,3 +66,14 @@ services:
     dns:
       - ${DOCKSAL_DNS1}
       - ${DOCKSAL_DNS2}
+
+  # Browser
+  browser:
+    hostname: browser
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "5900:5900"
+    dns:
+      - ${DOCKSAL_DNS1}
+      - ${DOCKSAL_DNS2}
+
