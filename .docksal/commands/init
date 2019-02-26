@@ -77,7 +77,7 @@ copy_settings_file()
 {
 	local source="$1"
 	local dest="$2"
-	
+
 	if [[ ! -f $dest ]]; then
 		echo "Copying ${dest}..."
 		cp $source $dest
@@ -95,7 +95,7 @@ init_settings ()
 {
 	# Drupal
 	copy_settings_file "${SITEDIR_PATH}/example.settings.local.php" "${SITEDIR_PATH}/settings.local.php"
-	
+
 	# Behat
 	copy_settings_file 'tests/behat/behat.yml.dist' 'tests/behat/behat.yml'
 }
@@ -111,43 +111,30 @@ fix_permissions ()
 site_install ()
 {
 	cd $DOCROOT_PATH
-	
+
 	# We disable email sending here so site-install does not return an error
-	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush site-install -y --site-name='My Drupal 7 Site'"
+	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush site-install -y --site-name='My Drupal 7 Site'" || true
 }
 
 # Install another site
 site_install_anothersite ()
 {
 	cd $DOCROOT_PATH
-	
+
 	# Initialize settings
 	copy_settings_file "sites/example.com/example.settings.local.php" "sites/example.com/settings.local.php"
 	# Create DB
-	db_create 'anothersite'
+	fin db create 'anothersite'
 	# Install site
-	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'"
+	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'" || true
 	echo -e "Open ${yellow}http://anothersite.drupal7-advanced.docksal${NC} in your browser to view site1"
-}
-
-# Create a new DB
-# @param $1 DB name
-db_create ()
-{
-	echo-yellow "Creating DB ${1}..."
-	
-	local database="${1}"
-	local mysql_exec="mysql -h db --user=root --password=${MYSQL_ROOT_PASSWORD} -e ";
-	local query="DROP DATABASE IF EXISTS ${database}; CREATE DATABASE ${database}; GRANT ALL ON ${database}.* TO '${MYSQL_USER}'@'%'"
-	
-	fin exec "${mysql_exec} \"${query}\""
 }
 
 # Import database from the source site alias
 db_import ()
 {
 	_confirm "Do you want to import DB from ${SOURCE_ALIAS}?"
-	
+
 	cd $DOCROOT_PATH
 	fin drush -l "${SITE_DIRECTORY}" sql-sync "${SOURCE_ALIAS}" @self -y
 }
@@ -157,7 +144,7 @@ db_updates ()
 {
 	cd $DOCROOT_PATH
 	echo-yellow "Applying DB updates..."
-	
+
 	set -x
 	fin drush -l $SITE_DIRECTORY status
 	fin drush -l $SITE_DIRECTORY rr # resolve moved modules
@@ -173,7 +160,7 @@ local_settings ()
 {
 	cd $DOCROOT_PATH
 	echo-yellow "Applying local settings..."
-	
+
 	set -x
 	fin drush -l $SITE_DIRECTORY en "${MODULES_ENABLED}" -y
 	fin drush -l $SITE_DIRECTORY dis "${MODULES_DISABLED}" -y
@@ -185,7 +172,7 @@ compass_compile ()
 {
 	cd $PROJECT_ROOT
 	echo-yellow "Compiling Sass..."
-	
+
 #	set -x
 #	cd ${DOCROOT_PATH}/sites/all/themes/<themename>
 #	fin exec bundle install
@@ -197,7 +184,7 @@ compass_compile ()
 run_behat ()
 {
 	cd $PROJECT_ROOT
-	
+
 	echo -e "${yellow}Launching Behat validation tests...${NC}"
 	cd tests/behat
 	fin behat --format=pretty --out=std --format=junit --out=junit features/blackbox.feature
