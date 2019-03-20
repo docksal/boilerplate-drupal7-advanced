@@ -22,7 +22,7 @@ Follow [Docksal environment setup instructions](https://github.com/docksal/docks
 1. Clone this repo into your Projects directory
 
     ```
-    git clone https://github.com/docksal/drupal7-advanced.git
+    git clone https://github.com/docksal/boilerplate-drupal7-advanced.git drupal7-advanced
     cd drupal7-advanced
     ```
 
