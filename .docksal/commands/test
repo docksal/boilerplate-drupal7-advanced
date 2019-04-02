@@ -19,5 +19,5 @@ echo "Testing login page..."
 curl -sL -I http://${VIRTUAL_HOST}/user/login | grep "HTTP/1.1 200 OK"
 
 echo "Testing multisite..."
-curl -sL -I http://anothersite.drupal7-advanced.docksal | grep "HTTP/1.1 200 OK"
-curl -sL http://anothersite.drupal7-advanced.docksal | grep "Another Drupal 7 Site"
+curl -sL -I http://anothersite.${VIRTUAL_HOST} | grep "HTTP/1.1 200 OK"
+curl -sL http://anothersite.${VIRTUAL_HOST} | grep "Another Drupal 7 Site"

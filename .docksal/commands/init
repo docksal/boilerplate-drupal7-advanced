@@ -127,7 +127,7 @@ site_install_anothersite ()
 	fin db create 'anothersite'
 	# Install site
 	fin exec "php -d sendmail_path=/bin/true /usr/local/bin/drush @drupal7-advanced.anothersite site-install -y --site-name='Another Drupal 7 Site'" || true
-	echo -e "Open ${yellow}http://anothersite.drupal7-advanced.docksal${NC} in your browser to view site1"
+	echo -e "Open ${yellow}http://anothersite.${VIRTUAL_HOST}${NC} in your browser to view site1"
 }
 
 # Import database from the source site alias
