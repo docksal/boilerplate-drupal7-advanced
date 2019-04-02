@@ -1,3 +1,3 @@
 <?php
 
-$sites['anothersite.drupal7-advanced.docksal'] = 'example.com';
+$sites['anothersite.%host%'] = 'example.com';
