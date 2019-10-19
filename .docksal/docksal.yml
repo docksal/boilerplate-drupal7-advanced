@@ -35,7 +35,9 @@ services:
   # Browser
   browser:
     hostname: browser
-    image: selenium/standalone-chrome
+    # Pin selenium image to an older version
+    # See https://github.com/docksal/docksal/issues/1096#issuecomment-543316840
+    image: selenium/standalone-chrome-debug:3.141.59-oxygen
     dns:
       - ${DOCKSAL_DNS1}
       - ${DOCKSAL_DNS2}
