@@ -2,10 +2,6 @@
 bin/*
 vendor/*
 
-# Local config
-behat.yml
-composer.lock
-
 # Screenshots
 screenshots/*
 !screenshots/.gitkeep

@@ -8,12 +8,7 @@
 ## Usage: fin test
 
 # Abort if anything fails
-set -e
-
-# Debug mode switch
-if [[ "${DEBUG}" != "" ]]; then
-    set -x
-fi
+set -eux
 
 echo "Testing home page..."
 curl -sL -I http://${VIRTUAL_HOST} | grep "HTTP/1.1 200 OK"

@@ -92,7 +92,6 @@ site_install ()
 {
 	# Initialize local settings
 	copy_settings_file "${SITEDIR_PATH}/example.settings.local.php" "${SITEDIR_PATH}/settings.local.php"
-	copy_settings_file "${PROJECT_ROOT}/tests/behat/behat.yml.dist" "${PROJECT_ROOT}/tests/behat/behat.yml"
 
 	cd "$DOCROOT_PATH"
 
