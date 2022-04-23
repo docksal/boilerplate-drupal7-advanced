@@ -7,31 +7,12 @@
 # - add .docksal/docksal-local.yml to .gitignore
 
 # Docksal stitches several docker-compose configuration files together.
-# Run "fin config" to see which files are involved and the resulting configration.
+# Run "fin config" to see which files are involved and the resulting configuration.
 
-version: "2.1"
+version: "3.9"
 
 services:
-  # Web
-  web:
-    extends:
-      file: ${HOME}/.docksal/stacks/services.yml
-      service: apache
-    depends_on:
-      - cli
-
-  # DB
-  db:
-    extends:
-      file: ${HOME}/.docksal/stacks/services.yml
-      service: mysql
-
-  # CLI
-  cli:
-    extends:
-      file: ${HOME}/.docksal/stacks/services.yml
-      service: cli
-
+  # Extra services and overrides
   # Browser
   browser:
     hostname: browser

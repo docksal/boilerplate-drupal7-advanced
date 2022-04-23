@@ -2,10 +2,10 @@
 
 $aliases['default'] = array(
   'root' => '/var/www/docroot',
-  'uri'  => '%host%',
+  'uri'  => 'boilerplate-drupal7-advanced.docksal.site',
 );
 
 $aliases['anothersite'] = array(
   'root' => '/var/www/docroot',
-  'uri'  => 'anothersite.%host%',
+  'uri'  => 'anothersite.boilerplate-drupal7-advanced.docksal.site',
 );

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Web-based script to initialize Docksal powered Drupal 7 site
+## Web-based script to initialize a Docksal powered Drupal 7 site
 ## Usage:
 ##   fin exec-url https://raw.githubusercontent.com/docksal/boilerplate-drupal7-advanced/master/.docksal/commands/web-init
 
