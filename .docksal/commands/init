@@ -111,8 +111,6 @@ site_install_anothersite ()
 
 	# Initialize local settings
 	copy_settings_file "sites/example.com/example.settings.local.php" "sites/example.com/settings.local.php"
-	fin exec sed -i "s/%host%/${VIRTUAL_HOST}/g" "/var/www/${DOCROOT}/sites/sites.php"
-	fin exec sed -i "s/%host%/${VIRTUAL_HOST}/g" "/var/www/drush/aliases/drupal7-advanced.aliases.drushrc.php"
 
 	# Create an additional database
 	fin db create 'anothersite'

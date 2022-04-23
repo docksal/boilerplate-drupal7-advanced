@@ -1,3 +1,3 @@
 <?php
 
-$sites['anothersite.boilerplate-drupal7-advanced.docksal.site'] = 'example.com';
+$sites['anothersite.drupal7-advanced.docksal.site'] = 'example.com';
